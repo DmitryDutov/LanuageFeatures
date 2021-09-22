@@ -20,10 +20,11 @@ namespace LanuageFeatures.Controllers
                 decimal? price = p?.Price ?? 0;
                 string relatedName = p?.Related?.Name ?? "<None>";
                 string category = p?.Category ?? "<None>";
+                bool inStock = p?.InStock ?? false;
 
                 results.Add(string.Format(
-                    "Name: {0}, Price: {1}, Related: {2}, Category: {3}"
-                    , name, price, relatedName, category
+                     "Name: {0}, Price: {1}, Related: {2}, Category: {3}, Stock: {4}"
+                    , name     , price     , relatedName , category     , inStock
                     ));
             }
             return View(results);
