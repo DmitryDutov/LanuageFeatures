@@ -18,10 +18,11 @@ namespace LanuageFeatures.Controllers
             {
                 string name = p?.Name;
                 decimal? price = p?.Price;
+                string relatedName = p?.Related?.Name;
 
-                results.Add(string.Format("Name: {0}, Price: {1}", name, price));
+                results.Add(string.Format("Name: {0}, Price: {1}, Related: {2}", name, price, relatedName));
             }
-            return View(new string[] { "C#", "Language", "Features" });
+            return View(results);
         }
     }
 }
