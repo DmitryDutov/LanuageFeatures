@@ -13,30 +13,15 @@ namespace LanuageFeatures.Controllers
     {
         public ViewResult Index()
         {
+            List<string> results = new List<string>();
+            foreach (Product p in Product.GetProduct())
+            {
+                string name = p?.Name;
+                decimal? price = p?.Price;
+
+                results.Add(string.Format("Name: {0}, Price: {1}", name, price));
+            }
             return View(new string[] { "C#", "Language", "Features" });
-        }
-
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
