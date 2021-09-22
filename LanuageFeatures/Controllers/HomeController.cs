@@ -11,6 +11,11 @@ namespace LanuageFeatures.Controllers
 {
     public class HomeController : Controller
     {
+        public ViewResult Index()
+        {
+            return View(new string[] { "C#", "Language", "Features" });
+        }
+
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -18,10 +23,10 @@ namespace LanuageFeatures.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+        //public IActionResult Index()
+        //{
+        //    return View();
+        //}
 
         public IActionResult Privacy()
         {
