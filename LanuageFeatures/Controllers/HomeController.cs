@@ -22,10 +22,14 @@ namespace LanuageFeatures.Controllers
                 string category = p?.Category ?? "<None>";
                 bool inStock = p?.InStock ?? false;
 
-                results.Add(string.Format(
-                     "Name: {0}, Price: {1}, Related: {2}, Category: {3}, Stock: {4}"
-                    , name     , price     , relatedName , category     , inStock
-                    ));
+                ////Традиционное образование строки
+                //results.Add(string.Format(
+                //     "Name: {0}, Price: {1}, Related: {2}, Category: {3}, Stock: {4}"
+                //    , name     , price     , relatedName , category     , inStock
+                //    ));
+
+                //Интерполяция
+                results.Add($"Name: {name}, Price: {price}, Related: {relatedName}, Category: {category}, Stock: {inStock}");
             }
             return View(results);
         }
