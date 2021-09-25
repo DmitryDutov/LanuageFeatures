@@ -13,19 +13,14 @@ namespace LanuageFeatures.Controllers
     {
         public ViewResult Index()
         {
-            List<string> results = new List<string>();
-            foreach (Product p in Product.GetProduct())
+            //Инициализация объектов с помощью словаря
+            Dictionary<string, Product> products = new Dictionary<string, Product>
             {
-                string name = p?.Name ?? "<No Name>";
-                decimal? price = p?.Price ?? 0;
-                string relatedName = p?.Related?.Name ?? "<None>";
-                string category = p?.Category ?? "<None>";
-                bool inStock = p?.InStock ?? false;
+                {"Kayak", new Product {Name = "Kayak", Category = "New Category", Price = 275M} },
+                {"Lifejacket", new Product{Name="Lifejacet", Category = "Jacket", Price = 48.95M } }
+            };
 
-                //Интерполяция
-                results.Add($"Name: {name}, Price: {price}, Related: {relatedName}, Category: {category}, Stock: {inStock}");
-            }
-            return View(results);
+            return View("Index", products.Keys);
         }
     }
 }
