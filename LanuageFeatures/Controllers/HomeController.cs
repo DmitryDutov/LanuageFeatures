@@ -9,16 +9,31 @@ using System.Threading.Tasks;
 
 namespace LanuageFeatures.Controllers
 {
+    //Демонстрация рабты метода расширения как для класса Product так и для класса ShoppingCart
     public class HomeController : Controller
     {
         public ViewResult Index()
         {
-            //Создаём экземпляр ShoppingCart и инициализируем поле Products с помощью метода GetProduct() класса продукт
-            ShoppingCart cart = new ShoppingCart{ Products = Product.GetProduct() };
-            //используем метод расширения TotalPrice()
-            decimal cartTotal = cart.TotalPrice();
+            //Инициализируем продукты в корзине
+            ShoppingCart cart = new ShoppingCart { Products = Product.GetProduct() };
 
-            return View("Index", new string[] { $"Total: {cartTotal:C2}" });
+            //Инициализируем массив продуктов
+            Product[] productArray =
+            {
+                  new Product{Name="Kayak"      , Category="Cat001", Price = 500M }
+                , new Product{Name="LifeJacket" , Category="Cat002", Price = 50M }
+                , new Product{Name="Product-001", Category="Cat001", Price = 150M }
+            };
+
+            //вычисляем общую стоимость в обоих случаях
+            decimal cartTotal   = cart.TotalPrice();
+            decimal arrayTotal  = productArray.TotalPrice();
+
+            //выводим информацию на View
+            return View("Index", new string[] {
+                  $"Cart Total: {cartTotal:C2}" 
+                , $"Arry Total: {arrayTotal:C2}"
+            });
         }
     }
 }

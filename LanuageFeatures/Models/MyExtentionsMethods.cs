@@ -7,12 +7,12 @@ namespace LanuageFeatures.Models
 {
     public static class MyExtentionsMethods
     {
-        //Ключевое слово this помечает метод TotalPrice как метод расширения для ShoppingCart
-        //на экземпляр ShoppingCart к которому применён метод расширения можно ссылаться с использованием параметра cartParam
-        public static decimal TotalPrice(this ShoppingCart cartParam) //в качестве параметра передаём экземпляр ShoppingCart
+        //Ключевое слово this помечает метод TotalPrice как метод расширения для множества Prosuct
+        //на экземпляр множества к которому применён метод расширения можно ссылаться с использованием параметра products
+        public static decimal TotalPrice(this IEnumerable<Product> products) //в качестве параметра передаём экземпляр перечисления множества Product'ов
         {
             decimal total = 0;
-            foreach (Product prod in cartParam.Products)
+            foreach (Product prod in products)
             {
                 total += prod?.Price ?? 0;
             }
