@@ -21,18 +21,24 @@ namespace LanuageFeatures.Controllers
             Product[] productArray =
             {
                   new Product{Name="Kayak"      , Category="Cat001", Price = 500M }
-                , new Product{Name="LifeJacket" , Category="Cat002", Price = 50M }
-                , new Product{Name="Product-001", Category="Cat001", Price = 150M }
+                , new Product{Name="LifeJacket" , Category="Cat002", Price = 300M }
+                , new Product{Name="Product-001", Category="Cat001", Price = 100M }
+                , new Product{Name="Product-002", Category="Cat001", Price = 150M }
+                , new Product{Name="Product-003", Category="Cat001", Price = 200M }
             };
 
             //вычисляем общую стоимость в обоих случаях
             decimal cartTotal   = cart.TotalPrice();
             decimal arrayTotal  = productArray.TotalPrice();
 
+            //Общий прайс с фильтром
+            decimal filterTotal      = productArray.FilterByPrice(200).TotalPrice();
+
             //выводим информацию на View
             return View("Index", new string[] {
                   $"Cart Total: {cartTotal:C2}" 
                 , $"Arry Total: {arrayTotal:C2}"
+                , $"Filter Total: {filterTotal:C2}"
             });
         }
     }
