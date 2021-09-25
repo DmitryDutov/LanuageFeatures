@@ -13,11 +13,11 @@ namespace LanuageFeatures.Controllers
     {
         public ViewResult Index()
         {
-            //Инициализация объектов с помощью словаря
+            //Другой способ инициализации с помощью словаря
             Dictionary<string, Product> products = new Dictionary<string, Product>
             {
-                {"Kayak", new Product {Name = "Kayak", Category = "New Category", Price = 275M} },
-                {"Lifejacket", new Product{Name="Lifejacet", Category = "Jacket", Price = 48.95M } }
+                ["Kayak"] = new Product {Name = "Kayak", Category = "New Category", Price = 275M},
+                ["Lifejacket"] = new Product{Name="Lifejacet", Category = "Jacket", Price = 48.95M }
             };
 
             return View("Index", products.Keys);
