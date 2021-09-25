@@ -18,6 +18,7 @@ namespace LanuageFeatures.Models
 
         public static Product[] GetProduct()
         {
+            //Инициализация объекта:
             Product kayak = new Product { 
                   Name = "Kayak"
                 , Category = "Water Craft"
