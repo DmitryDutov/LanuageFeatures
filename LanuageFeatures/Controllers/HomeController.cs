@@ -13,14 +13,12 @@ namespace LanuageFeatures.Controllers
     {
         public ViewResult Index()
         {
-            //Другой способ инициализации с помощью словаря
-            Dictionary<string, Product> products = new Dictionary<string, Product>
-            {
-                ["Kayak"] = new Product {Name = "Kayak", Category = "New Category", Price = 275M},
-                ["Lifejacket"] = new Product{Name="Lifejacet", Category = "Jacket", Price = 48.95M }
-            };
+            //Создаём экземпляр ShoppingCart и инициализируем поле Products с помощью метода GetProduct() класса продукт
+            ShoppingCart cart = new ShoppingCart{ Products = Product.GetProduct() };
+            //используем метод расширения TotalPrice()
+            decimal cartTotal = cart.TotalPrice();
 
-            return View("Index", products.Keys);
+            return View("Index", new string[] { $"Total: {cartTotal:C2}" });
         }
     }
 }
