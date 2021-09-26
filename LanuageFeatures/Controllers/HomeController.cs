@@ -12,11 +12,6 @@ namespace LanuageFeatures.Controllers
     //Демонстрация рабты метода расширения как для класса Product так и для класса ShoppingCart
     public class HomeController : Controller
     {
-        bool FilterByPrice (Product p)
-        {
-            return (p?.Price ?? 0) >= 150;
-        }
-
         public ViewResult Index()
         {
             //Инициализируем продукты в корзине
@@ -32,11 +27,6 @@ namespace LanuageFeatures.Controllers
                 , new Product{Name="Product-003", Category="Cat001", Price = 200M }
             };
 
-            Func<Product, bool> nameFilter = delegate (Product prod)
-            {
-                return prod?.Name?[0] == 'L';
-            };
-
             //вычисляем общую стоимость в обоих случаях
             decimal cartTotal  = cart.TotalPrice();
             decimal arrayTotal = productArray.TotalPrice();
@@ -46,10 +36,9 @@ namespace LanuageFeatures.Controllers
             //Общий прайс с фильтром по имени
             decimal nameFilterTotal  = productArray.FilterByName('P').TotalPrice();
 
-            //Универсальный фильтр
-            decimal uniPriceFilterTotal = productArray.Filter(FilterByPrice).TotalPrice();
-            decimal uniNameFilterTotal  = productArray.Filter(nameFilter).TotalPrice();
-            
+            //Универсальный фильтр с использованием лямбда-выражений
+            decimal uniPriceFilterTotal = productArray.Filter(p => (p?.Price ?? 0) >= 150).TotalPrice();
+            decimal uniNameFilterTotal  = productArray.Filter(p => p?.Name[0] == 'K').TotalPrice();
 
             //выводим информацию на View
             return View("Index", new string[] {
