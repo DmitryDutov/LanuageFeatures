@@ -14,6 +14,8 @@ namespace LanuageFeatures.Models
         public Product Related { get; set; }
         //Инициализация
         public bool InStock { get; } = true;
+        //Свойство как лямбда-выражение
+        public bool NameBeginWithS => Name?[0] == 'S';
         public Product(bool stock = true) { InStock = stock; }
 
         public static Product[] GetProduct()
