@@ -28,17 +28,20 @@ namespace LanuageFeatures.Controllers
             };
 
             //вычисляем общую стоимость в обоих случаях
-            decimal cartTotal   = cart.TotalPrice();
-            decimal arrayTotal  = productArray.TotalPrice();
+            decimal cartTotal  = cart.TotalPrice();
+            decimal arrayTotal = productArray.TotalPrice();
 
             //Общий прайс с фильтром
-            decimal filterTotal      = productArray.FilterByPrice(200).TotalPrice();
+            decimal priceFilterTotal = productArray.FilterByPrice(200).TotalPrice();
+            //Общий прайс с фильтром по имени
+            decimal nameFilterTotal  = productArray.FilterByName('P').TotalPrice();
 
             //выводим информацию на View
             return View("Index", new string[] {
                   $"Cart Total: {cartTotal:C2}" 
                 , $"Arry Total: {arrayTotal:C2}"
-                , $"Filter Total: {filterTotal:C2}"
+                , $"Price Filter Total: {priceFilterTotal:C2}"
+                , $"Name Filter Total: {nameFilterTotal:C2}"
             });
         }
     }
