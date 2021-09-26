@@ -9,12 +9,10 @@ using System.Threading.Tasks;
 
 namespace LanuageFeatures.Controllers
 {
-    //Создание общего шаблона действия
+    //Метод действия как лямбда-выражение
     public class HomeController : Controller
     {
-        public ViewResult Index()
-        {
-            return View(Product.GetProduct().Select(p => p?.Name));
-        }
+        public ViewResult Index() => View(Product.GetProduct().Select(p => p?.Name));
     }
 }
+
