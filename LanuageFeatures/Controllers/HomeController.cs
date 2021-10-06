@@ -13,9 +13,15 @@ namespace LanuageFeatures.Controllers
     {
         public ViewResult Index()
         {
-            //Неявная типизация names (тип определяется автомтически)
-            var names = new[] { "Kayak", "Lifejacket", "Soccer ball" };
-            return View(names);
+            var products = new[] {
+                   //каждый объект в массиве products имеет анонимный тип
+                   new {Name = "Kayak"       , Price = 275M }
+                  ,new {Name = "Lifejacket"  , Price = 48.25M }
+                  ,new {Name = "Soccer ball" , Price = 19.50M }
+                  ,new {Name = "Conter flag" , Price = 34.95M }
+            };
+
+            return View(products.Select(p => p.Name));
         }
     }
 }
