@@ -9,10 +9,14 @@ using System.Threading.Tasks;
 
 namespace LanuageFeatures.Controllers
 {
-    //Метод действия как лямбда-выражение
     public class HomeController : Controller
     {
-        public ViewResult Index() => View(Product.GetProduct().Select(p => p?.Name));
+        public ViewResult Index()
+        {
+            //Неявная типизация names (тип определяется автомтически)
+            var names = new[] { "Kayak", "Lifejacket", "Soccer ball" };
+            return View(names);
+        }
     }
 }
 
