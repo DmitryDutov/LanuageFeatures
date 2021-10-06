@@ -21,7 +21,8 @@ namespace LanuageFeatures.Controllers
                   ,new {Name = "Conter flag" , Price = 34.95M }
             };
 
-            return View(products.Select(p => p.Name));
+            //Отображение типа объекта по свойству
+            return View(products.Select(p => p.GetType().Name));
         }
     }
 }
