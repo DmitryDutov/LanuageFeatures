@@ -21,9 +21,9 @@ namespace LanuageFeatures.Controllers
                 , new {Name = "Kotya", Price = 1000M }
             };
 
-            //Старый подход к получению имён:
-            //Linq-выражение генерирует строки, каждая из которых имеет жёсткую ссылку на свойства Name и Price
-            return View(products.Select(p => $"Name: {p.Name}, Price: {p.Price}"));
+            //Новый подход к получению имён:
+            //вместо ручного присваивания получаем имя свойства автоматически
+            return View(products.Select(p => $"{nameof(p.Name)}: {p.Name}, {nameof(p.Price)}: {p.Price}"));
         }
     }
 }
